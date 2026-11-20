@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "alienguns",
+  "version": "${version}",
+  "name": "Alien Guns",
+  "description": "Инопланетные пушки: чёрные дыры, сверхновые, разломы и другие анимации.",
+  "authors": ["you"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.alienguns.AlienGuns"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
