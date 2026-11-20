@@ -6,7 +6,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -173,7 +175,9 @@ public final class Fx {
         double len = nv.length();
         if (len > 2.5) nv = nv.scale(2.5 / len);
         e.setDeltaMovement(nv);
-        e.hurtMarked = true;
+        if (e instanceof ServerPlayer sp) {
+            sp.connection.send(new ClientboundSetEntityMotionPacket(sp));
+        }
     }
 
     public static Vec3 closestOnSegment(Vec3 p, Vec3 a, Vec3 b) {

@@ -494,7 +494,9 @@ public final class Effects {
                 Fx.sound(l, fromC, SoundEvents.ENDERMAN_TELEPORT, 1.0f, 0.8f);
                 double[] dys = {-1.6, -1.0, -0.3, 0.4};
                 for (double dy : dys) {
-                    if (p.randomTeleport(dest.x, dest.y + dy, dest.z, true)) {
+                    Vec3 feet = new Vec3(dest.x, dest.y + dy, dest.z);
+                    if (!Fx.solid(l, feet) && !Fx.solid(l, feet.add(0, 1, 0))) {
+                        p.teleportTo(l, feet.x, feet.y, feet.z, Set.of(), p.getYRot(), p.getXRot(), true);
                         p.resetFallDistance();
                         break;
                     }
